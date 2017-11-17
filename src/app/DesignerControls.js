@@ -39,7 +39,7 @@ const styles = {
 };
 
 
-class DesignerControls extends React.Component {
+export default class DesignerControls extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
@@ -86,5 +86,3 @@ DesignerControls.propTypes = {
     connected: React.PropTypes.bool,
     pushCallback: React.PropTypes.func
 };
-
-module.exports = DesignerControls;

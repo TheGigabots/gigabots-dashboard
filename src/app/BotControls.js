@@ -1,12 +1,11 @@
 import React from "react";
-import {Card, CardText, CardMedia, CardTitle, RaisedButton} from "material-ui";
 import GigabotPanel from "./GigabotPanel";
 
 const styles = {
     width: '70%'
 }
 
-class BotTest extends React.Component {
+export default class BotTest extends React.Component {
 
     constructor() {
         super();
@@ -19,6 +18,5 @@ class BotTest extends React.Component {
         );
     }
 }
-module.exports = BotTest;
 
 

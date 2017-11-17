@@ -38,9 +38,9 @@ class Main extends React.Component {
                 iconButtonElement={<IconButton><MenuIcon /></IconButton>}
                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}>
-                <MenuItem onClick={() => this.props.router.push("/") }>Home</MenuItem>
-                <MenuItem onClick={() => this.props.router.push("/botTest") }>Controls</MenuItem>
+                <MenuItem onClick={() => this.props.router.push("/controls") }>Controls</MenuItem>
                 <MenuItem onClick={() => this.props.router.push("/designer") }>Designer</MenuItem>
+
             </IconMenu>
         );
     }
@@ -86,4 +86,6 @@ class Main extends React.Component {
         )
     }
 }
-module.exports = withRouter(Main);
+
+export default withRouter(Main);
+//module.exports = withRouter(Main);

@@ -40,7 +40,7 @@ const style = {
     width: 800
 }
 
-class Designer extends React.Component {
+export default class Designer extends React.Component {
     constructor() {
         super();
         this.state = this.newState();
@@ -205,4 +205,3 @@ class Designer extends React.Component {
         return this.blocklyEditor.refs.workspace.state.workspace;
     }
 }
-module.exports = Designer;

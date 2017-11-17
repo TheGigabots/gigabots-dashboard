@@ -1,5 +1,5 @@
 import React from "react";
-import {createStore, combineReducers} from "redux";
+import {combineReducers, createStore} from "redux";
 import backoff from "backoff";
 import BigBang from "bigbang.io";
 import * as ActionTypes from "./ActionTypes";
@@ -8,11 +8,11 @@ import channelsReducer from "./ChannelsReducer";
 import gigabotReducer from "./GigabotReducer";
 import async from "async";
 
+
 const BOT_HOST = 'https://thegigabots.bigbang.io';
-class AppStore {
-
-
+class AppStoreClz {
     constructor() {
+
         this.client = new BigBang.Client(BOT_HOST);
         this.subQueue = async.queue(this.processSubscribe.bind(this), 1);
 
@@ -21,9 +21,7 @@ class AppStore {
             channels: channelsReducer,
             gigabot: gigabotReducer,
         })
-
         this._store = createStore(reducers);
-
         this.doConnect();
     }
 
@@ -191,6 +189,25 @@ class AppStore {
 
     }
 
+    drive(botId, left, right) {
+
+        left = Math.round(left);
+        right = Math.round(right);
+
+        const msg = {
+            botId: botId,
+            type: 'drive',
+            left: left,
+            right: right
+        }
+
+        const channel = this.client.getChannel(botId);
+
+        if (channel) {
+            channel.publish(msg);
+        }
+    }
+
     doConnect() {
         const MAX_CONNECT_ATTEMPTS = 99999;
 
@@ -261,5 +278,5 @@ class AppStore {
 
 }
 
-
-module.exports = new AppStore();
+const instance = new AppStoreClz();
+export default instance;

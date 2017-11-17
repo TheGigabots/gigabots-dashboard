@@ -3,9 +3,9 @@ import React from "react";
 import AppStore from "./store/AppStore";
 import MotorControlPanel from "./MotorControlPanel";
 import SensorDisplayPanel from "./SensorDisplayPanel";
-import {Row, Col} from "react-flexbox-grid";
+import {Col, Row} from "react-flexbox-grid";
 
-class GigabotPanel extends React.Component {
+export default class GigabotPanel extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = this.newState();
@@ -63,24 +63,17 @@ class GigabotPanel extends React.Component {
     render() {
         return (
             <div>
+                <SensorDisplayPanel bot={this.state.gigabot}/>
                 <Row>
-                    Firmware Version {this.getVersion()}
+                    <Col sm={6}><MotorControlPanel botId={this.getBotId()} motor={"A"}/></Col>
+                    <Col sm={6}><MotorControlPanel botId={this.getBotId()} motor={"B"}/></Col>
                 </Row>
                 <Row>
-                    <SensorDisplayPanel bot={this.state.gigabot} />
-                </Row>
-                <Row>
-                    <Col sm={3}><MotorControlPanel botId={this.getBotId()} motor={"A"}/></Col>
-                    <Col sm={3}><MotorControlPanel botId={this.getBotId()} motor={"B"}/></Col>
-                </Row>
-                <Row>
-                    <Col sm={3}><MotorControlPanel botId={this.getBotId()} motor={"C"}/></Col>
-                    <Col sm={3}><MotorControlPanel botId={this.getBotId()} motor={"D"}/></Col>
+                    <Col sm={6}><MotorControlPanel botId={this.getBotId()} motor={"C"}/></Col>
+                    <Col sm={6}><MotorControlPanel botId={this.getBotId()} motor={"D"}/></Col>
                 </Row>
             </div>
         )
     }
 
 }
-
-module.exports = GigabotPanel;
