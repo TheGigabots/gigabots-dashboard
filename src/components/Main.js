@@ -14,10 +14,13 @@ import {withStyles} from 'material-ui/styles';
 import S from "string";
 import ConfigurationDialog from './ConfigurationDialog'
 import Friends from './Friends';
-
+import ImportCodeDialog from './ImportCodeDialog';
+import {ListItemIcon, ListItemText} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 import {CloudUpload, PlayCircleOutline, Settings, Stop} from "material-ui-icons";
-
 import {blueGrey, green, red, yellow} from 'material-ui/colors';
+import DownloadIcon from 'material-ui-icons/FileDownload';
+import UploadIcon from 'material-ui-icons/FileUpload';
 
 const styles = theme => ({
     root: {
@@ -77,11 +80,13 @@ class Main extends React.Component {
             con: AppStore.store.getState().con,
             auth: AppStore.store.getState().auth,
             gigabot: new Gigabot(AppStore.store.getState().gigabot),
+            designerCode: {xml: null, js: null},
             connectDialog: false,
             configurationDialog: false,
+            importCodeDialog: false,
             friendsDialog: false,
             profileMenu: false,
-
+            loadDesignerFromLocalStorage: false
         }
     }
 
@@ -145,34 +150,10 @@ class Main extends React.Component {
                             onClick={(e) => this.handleConnectMenu(e)}>
                             <GigabotIcon className={connectButtonClass}/>
                         </IconButton>
-                        {
-                            this.state.gigabot.connected && (
-                                <Menu
-                                    open={this.state.profileMenu}
-                                    anchorEl={this.state.anchorEl}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    onRequestClose={() => {
-                                        this.setState({
-                                            anchorEl: null,
-                                            profileMenu: false
-                                        })
-                                    }}
-                                >
-                                    <MenuItem onClick={() => this.handleFriends()}>Friends</MenuItem>
-
-                                    <MenuItem onClick={() => this.handleDisconnect()}>Disconnect</MenuItem>
-                                </Menu>
-                            )
-                        }
+                        {this.state.gigabot.connected && this.rightMenu()}
                     </Toolbar>
                 </AppBar>
+
                 <ConnectToBotDialog open={this.state.connectDialog} cancelFunc={() => {
                     this.handleCancelBotDialog()
                 }} connectFunc={(botId) => {
@@ -191,30 +172,116 @@ class Main extends React.Component {
                          }}/>
 
 
+                <ImportCodeDialog
+                    open={this.state.importCodeDialog}
+                    closeFunc={() => {
+                        this.setState({importCodeDialog: false})
+                    }}
+                    codeUploadedFunc={() => {
+                        this.setState({loadDesignerFromLocalStorage: true})
+                    }}
+                />
+
                 <Snackbar
                     open={!this.state.con.connected}
                     message={this.state.con.message}
                     autoHideDuration={99999}
                 />
-                <Designer codeUpdate={(code) => this.handleCodeUpdate(code)} gigabot={this.state.gigabot}/>
+                <Designer
+                    loadFromLocalStorage={this.state.loadDesignerFromLocalStorage}
+                    loadXMLFunc={() => this.handleDesignerLoadXML()}
+                    codeChangeListener={(js, xml) => this.handleDesignerCodeChange(js, xml)}
+                    gigabot={this.state.gigabot}
+                />
                 {this.props.children}
             </div>
         )
     }
 
+    rightMenu() {
+        return (
+            <Menu
+                open={this.state.profileMenu}
+                anchorEl={this.state.anchorEl}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                onRequestClose={() => {
+                    this.setState({
+                        anchorEl: null,
+                        profileMenu: false
+                    })
+                }}
+            >
+                <MenuItem onClick={() => this.handleFriends()}>Friends</MenuItem>
+                <Divider/>
+
+                <MenuItem onClick={() => this.handleUpload()}>
+                    <ListItemIcon><UploadIcon/></ListItemIcon>
+                    <ListItemText inset primary="Upload Code"/>
+                </MenuItem>
+
+                <MenuItem onClick={() => this.handleDownloadFile()}>
+                    <ListItemIcon><DownloadIcon/></ListItemIcon>
+                    <ListItemText inset primary="Download Code"/>
+                </MenuItem>
+
+                <Divider/>
+
+                <MenuItem onClick={() => this.handleDisconnect()}>Disconnect</MenuItem>
+            </Menu>
+        )
+    }
+
+
+    handleDesignerCodeChange(js, xml) {
+        this.setState({
+            designerCode: {xml: xml, js: js}
+        })
+    }
+
+    handleDesignerLoadXML() {
+        this.setState({
+            loadDesignerFromLocalStorage: false
+        })
+    }
 
     handleCloudUpload() {
         let botId = this.state.gigabot.id;
-        AppStore.publishScript(botId, this.designerCode);
+        AppStore.publishScript(botId, this.state.designerCode.js);
     }
 
+
+    handleDownloadFile() {
+
+        if (this.state.designerCode && this.state.designerCode.xml) {
+            var blob = new Blob([this.state.designerCode.xml], {type: "text/xml"})
+                , uri = URL.createObjectURL(blob)
+            let filename = 'gigabot.xml'
+
+            var link = document.createElement('a');
+            if (typeof link.download === 'string') {
+                document.body.appendChild(link);
+                link.download = filename;
+                link.href = uri;
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                window.location.replace(uri);
+            }
+        }
+    }
 
     handleConfigDialog(open) {
         this.setState({
             configurationDialog: open
         })
     }
-
 
     handleCancelBotDialog() {
         this.setState({
@@ -225,9 +292,19 @@ class Main extends React.Component {
     handleFriends() {
         this.setState({
             profileMenu: false,
-            friendsDialog: true
-        })
+            friendsDialog: true,
+            importCodeDialog: false,
+        });
     }
+
+    handleUpload() {
+        this.setState({
+            profileMenu: false,
+            friendsDialog: false,
+            importCodeDialog: true,
+        });
+    }
+
 
     handleDisconnect() {
 
@@ -242,11 +319,6 @@ class Main extends React.Component {
             profileMenu: false
         })
     }
-
-    handleCodeUpdate(code) {
-        this.designerCode = code;
-    }
-
 
     handleConnectBot(botId) {
         if (S(botId).isEmpty()) {
@@ -264,7 +336,6 @@ class Main extends React.Component {
     }
 
     handleConnectMenu(event) {
-
         if (this.state.gigabot.connected) {
             this.setState({
                 profileMenu: !this.state.profileMenu,

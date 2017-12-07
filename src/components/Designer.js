@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import {Controlled as CodeMirror} from 'react-codemirror2'
 import Blockly from 'node-blockly/browser';
 import GigabotsToolbox from './../blocks/GigabotsToolbox';
 import {reactLocalStorage} from 'reactjs-localstorage';
@@ -53,26 +52,36 @@ export default class Designer extends React.Component {
             }
         );
 
+        this.loadXMLFromLocalStorage(false);
+
+
+        this.blocklyEditor.addChangeListener(() => {
+
+            let xml = Blockly.Xml.workspaceToDom(this.blocklyEditor);
+            let xml_text = Blockly.Xml.domToText(xml);
+            let js = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
+            reactLocalStorage.set("editorXML", xml_text);
+            this.props.codeChangeListener(js, xml_text);
+        })
+
+        window.addEventListener('resize', () => this.resize())
+    }
+
+
+    loadXMLFromLocalStorage(notify) {
         let loadedXML = reactLocalStorage.get("editorXML");
 
         if (loadedXML) {
             Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(loadedXML), this.blocklyEditor);
+            let js = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
+            this.props.codeChangeListener(js, loadedXML);
         }
 
+        if (notify) {
+            this.props.loadXMLFunc();
+        }
 
-        this.blocklyEditor.addChangeListener(() => {
-            let code = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
-            this.props.codeUpdate(code);
-
-            var xml = Blockly.Xml.workspaceToDom(this.blocklyEditor);
-            var xml_text = Blockly.Xml.domToText(xml);
-            reactLocalStorage.set("editorXML", xml_text);
-            this.setState({code: code})
-
-        })
-        window.addEventListener('resize', () => this.resize())
     }
-
 
     componentWillUnmount() {
         this.unsubscribe();
@@ -96,7 +105,6 @@ export default class Designer extends React.Component {
     validateFriendOptions(e) {
         //console.log(e);
     }
-
 
     /**
      * Don't try and require these blocks up top before blockly is properly initialized.
@@ -144,6 +152,10 @@ export default class Designer extends React.Component {
     }
 
     render() {
+        if (this.props.loadFromLocalStorage) {
+            this.loadXMLFromLocalStorage(true);
+        }
+
         let blocklyDivStyle = {
             height: 800,
             width: 1000
@@ -180,8 +192,10 @@ export default class Designer extends React.Component {
 
 
 Designer.propTypes = {
-    codeUpdate: PropTypes.func.isRequired,
-    gigabot: PropTypes.object.isRequired
+    loadFromLocalStorage: PropTypes.bool.isRequired,
+    gigabot: PropTypes.object.isRequired,
+    codeChangeListener: PropTypes.func.isRequired,
+    loadXMLFunc: PropTypes.func.isRequired
 };
 
 

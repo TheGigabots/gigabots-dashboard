@@ -25,6 +25,7 @@
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^3.0.7",
     "react-dom": "latest",
+    "react-dropzone": "^4.2.3",
     "react-inspector": "^1.1.0",
     "react-json-inspector": "^7.0.0",
     "react-jss": "latest",

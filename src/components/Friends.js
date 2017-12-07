@@ -5,7 +5,6 @@ import {Button, IconButton, TextField} from 'material-ui';
 import {grey} from "material-ui/colors";
 import DeleteIcon from "material-ui-icons/Delete";
 import AppStore from "./../store/AppStore";
-import {CircularProgress} from 'material-ui/Progress';
 import _ from "lodash";
 import Dialog, {DialogContent, DialogTitle} from 'material-ui/Dialog';
 
