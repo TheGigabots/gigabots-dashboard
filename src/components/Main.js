@@ -116,8 +116,6 @@ class Main extends React.Component {
         }
 
         return (
-
-
             <div className={classes.root}>
                 <AppBar
                     position='static'
@@ -220,19 +218,15 @@ class Main extends React.Component {
             >
                 <MenuItem onClick={() => this.handleFriends()}>Friends</MenuItem>
                 <Divider/>
-
                 <MenuItem onClick={() => this.handleUpload()}>
                     <ListItemIcon><UploadIcon/></ListItemIcon>
                     <ListItemText inset primary="Upload Code"/>
                 </MenuItem>
-
                 <MenuItem onClick={() => this.handleDownloadFile()}>
                     <ListItemIcon><DownloadIcon/></ListItemIcon>
                     <ListItemText inset primary="Download Code"/>
                 </MenuItem>
-
                 <Divider/>
-
                 <MenuItem onClick={() => this.handleDisconnect()}>Disconnect</MenuItem>
             </Menu>
         )
@@ -240,8 +234,6 @@ class Main extends React.Component {
 
 
     handleDesignerCodeChange(js, xml) {
-
-        console.log(js);
         this.setState({
             designerCode: {xml: xml, js: js}
         })

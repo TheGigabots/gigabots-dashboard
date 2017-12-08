@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Card, {CardContent} from 'material-ui/Card';
+import {Button} from 'material-ui';
 import nipplejs from 'nipplejs';
 import AppStore from './../../store/AppStore';
+import ArrowUp from 'material-ui-icons/KeyboardArrowUp';
+import ArrowDown from 'material-ui-icons/KeyboardArrowDown';
+import {MenuItem} from 'material-ui/Menu';
+import Select from 'material-ui/Select';
+import Motors from './../../blocks/Motors';
 
 
 import Typography from 'material-ui/Typography';
@@ -42,10 +48,15 @@ class MotorCard extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.nippleManager = null;
+        this.state = {
+            speed: 50
+        }
     }
 
 
     componentDidMount() {
+
+        /*
         const joystickParams = {
             zone: this.nippleJsDiv,
             mode: 'static',
@@ -66,11 +77,11 @@ class MotorCard extends React.Component {
                 AppStore.stopMotor(this.props.gigabot.id, this.props.motor);
             }
         })
+        */
     }
 
     render() {
         const {classes, theme} = this.props;
-        const bot = this.props.gigabot;
         const motor = this.props.motor;
         return (
             <div>
@@ -81,13 +92,32 @@ class MotorCard extends React.Component {
                             <Typography type="subheading" color="secondary">
                                 Motor
                             </Typography>
+                            <Button
+                                onMouseDown={() => this.onButtonDown('f')}
+                                onMouseUp={() => this.onButtonUp()}
+                                raised><ArrowUp/></Button>
+                            <Button
+                                onMouseDown={() => this.onButtonDown('r')}
+                                onMouseUp={() => this.onButtonUp()}
+                                raised><ArrowDown/></Button>
+                            <Select
+                                value={this.state.speed}
+                                onChange={(e) => this.handleSpeedChange(e)}
+                            >
+                                <MenuItem value={0}>0</MenuItem>
+                                <MenuItem value={10}>10</MenuItem>
+                                <MenuItem value={20}>20</MenuItem>
+                                <MenuItem value={30}>30</MenuItem>
+                                <MenuItem value={40}>40</MenuItem>
+                                <MenuItem value={50}>50</MenuItem>
+                                <MenuItem value={60}>60</MenuItem>
+                                <MenuItem value={70}>70</MenuItem>
+                                <MenuItem value={80}>80</MenuItem>
+                                <MenuItem value={90}>90</MenuItem>
+                                <MenuItem value={100}>100</MenuItem>
+                            </Select>
                         </CardContent>
-                        <div className={classes.controls}>
-                            <div className={classes.nipple} ref={(div) => this.nippleJsDiv = div}>
-                                <div className="front"></div>
-                                <div className="back"></div>
-                            </div>
-                        </div>
+
                     </div>
                 </Card>
             </div>
@@ -95,6 +125,36 @@ class MotorCard extends React.Component {
     }
 
 
+    /*
+                            <div className={classes.controls}>
+                            <div className={classes.nipple} ref={(div) => this.nippleJsDiv = div}>
+                                <div className="front"></div>
+                                <div className="back"></div>
+                            </div>
+                        </div>
+     */
+
+
+    handleSpeedChange(e) {
+        this.setState({
+            speed: e.target.value
+        })
+    }
+
+    onButtonDown(dir) {
+        console.log('cleek!');
+
+        this.interval = setInterval(() => {
+            AppStore.startMotor(this.props.gigabot.id, this.props.motor, dir, Motors.toRotationSpeed(this.state.speed, false));
+        }, 250);
+
+    }
+
+    onButtonUp() {
+        console.log('uncleek')
+        clearInterval(this.interval);
+        AppStore.stopMotor(this.props.gigabot.id, this.props.motor);
+    }
 }
 
 
