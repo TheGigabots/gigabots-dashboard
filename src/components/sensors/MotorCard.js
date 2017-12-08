@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Card, {CardContent} from 'material-ui/Card';
 import {Button} from 'material-ui';
-import nipplejs from 'nipplejs';
 import AppStore from './../../store/AppStore';
 import ArrowUp from 'material-ui-icons/KeyboardArrowUp';
 import ArrowDown from 'material-ui-icons/KeyboardArrowDown';
 import {MenuItem} from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import Motors from './../../blocks/Motors';
+import Grid from 'material-ui/Grid';
 
 
 import Typography from 'material-ui/Typography';
@@ -92,30 +92,46 @@ class MotorCard extends React.Component {
                             <Typography type="subheading" color="secondary">
                                 Motor
                             </Typography>
-                            <Button
-                                onMouseDown={() => this.onButtonDown('f')}
-                                onMouseUp={() => this.onButtonUp()}
-                                raised><ArrowUp/></Button>
-                            <Button
-                                onMouseDown={() => this.onButtonDown('r')}
-                                onMouseUp={() => this.onButtonUp()}
-                                raised><ArrowDown/></Button>
-                            <Select
-                                value={this.state.speed}
-                                onChange={(e) => this.handleSpeedChange(e)}
-                            >
-                                <MenuItem value={0}>0</MenuItem>
-                                <MenuItem value={10}>10</MenuItem>
-                                <MenuItem value={20}>20</MenuItem>
-                                <MenuItem value={30}>30</MenuItem>
-                                <MenuItem value={40}>40</MenuItem>
-                                <MenuItem value={50}>50</MenuItem>
-                                <MenuItem value={60}>60</MenuItem>
-                                <MenuItem value={70}>70</MenuItem>
-                                <MenuItem value={80}>80</MenuItem>
-                                <MenuItem value={90}>90</MenuItem>
-                                <MenuItem value={100}>100</MenuItem>
-                            </Select>
+                            <Grid container>
+                                <Grid item>
+                                    <Button
+                                        color={"primary"}
+                                        onMouseDown={() => this.onButtonDown('f')}
+                                        onMouseUp={() => this.onButtonUp()}
+                                        raised><ArrowUp/></Button>
+                                </Grid>
+
+                                <Grid item>
+                                    <Button
+                                        color={"primary"}
+                                        onMouseDown={() => this.onButtonDown('r')}
+                                        onMouseUp={() => this.onButtonUp()}
+                                        raised><ArrowDown/></Button>
+
+                                </Grid>
+
+                                <Grid item>
+                                    <Select
+                                        value={this.state.speed}
+                                        onChange={(e) => this.handleSpeedChange(e)}
+                                    >
+                                        <MenuItem value={0}>0</MenuItem>
+                                        <MenuItem value={10}>10</MenuItem>
+                                        <MenuItem value={20}>20</MenuItem>
+                                        <MenuItem value={30}>30</MenuItem>
+                                        <MenuItem value={40}>40</MenuItem>
+                                        <MenuItem value={50}>50</MenuItem>
+                                        <MenuItem value={60}>60</MenuItem>
+                                        <MenuItem value={70}>70</MenuItem>
+                                        <MenuItem value={80}>80</MenuItem>
+                                        <MenuItem value={90}>90</MenuItem>
+                                        <MenuItem value={100}>100</MenuItem>
+                                    </Select>
+
+                                </Grid>
+                            </Grid>
+
+
                         </CardContent>
 
                     </div>
@@ -142,16 +158,13 @@ class MotorCard extends React.Component {
     }
 
     onButtonDown(dir) {
-        console.log('cleek!');
-
         this.interval = setInterval(() => {
             AppStore.startMotor(this.props.gigabot.id, this.props.motor, dir, Motors.toRotationSpeed(this.state.speed, false));
-        }, 250);
+        }, 1000);
 
     }
 
     onButtonUp() {
-        console.log('uncleek')
         clearInterval(this.interval);
         AppStore.stopMotor(this.props.gigabot.id, this.props.motor);
     }
