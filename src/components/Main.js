@@ -319,13 +319,11 @@ class Main extends React.Component {
             //TODO feedback.
         }
         else {
-            console.log('connecting to ' + botId)
             AppStore.connectToBot(botId);
             AppStore.storeLocalBotId(botId);
             this.setState({
                 connectDialog: !this.state.connectDialog
             })
-
         }
     }
 

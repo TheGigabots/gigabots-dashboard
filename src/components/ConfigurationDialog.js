@@ -60,7 +60,6 @@ export default class ConfigurationDialog extends React.Component {
                             <SensorCard gigabot={bot} sensor="IN4"/>
                         </Grid>
                     </Grid>
-
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => this.props.cancelFunc(false)} color="primary">

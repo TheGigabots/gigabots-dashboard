@@ -161,8 +161,7 @@ class SensorCard extends React.Component {
             </div>
         )
     }
-
-
+    
     metaForSensor() {
         const bot = this.props.gigabot;
         const sensor = bot[this.props.sensor];
@@ -182,7 +181,7 @@ class SensorCard extends React.Component {
             meta.friendlyName = 'Color Sensor';
         }
         else if (driver === 'lego-ev3-ir') {
-            meta.image = 'ultrasonic-sensor-square.jpg';
+            meta.image = 'infrared-sensor-square.jpg';
             meta.friendlyName = "IR Sensor";
         }
 
