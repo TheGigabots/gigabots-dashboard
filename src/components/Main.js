@@ -240,6 +240,8 @@ class Main extends React.Component {
 
 
     handleDesignerCodeChange(js, xml) {
+
+        console.log(js);
         this.setState({
             designerCode: {xml: xml, js: js}
         })

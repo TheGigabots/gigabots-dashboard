@@ -82,6 +82,9 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
       <field name="MOTOR">A</field>
       <field name="REVERSE">TRUE</field>
     </block>
+    <block type="run_motor_speed">
+      <field name="SPEED">0</field>
+    </block>
   </category>
   <category name="Loops">
     <block type="wait">

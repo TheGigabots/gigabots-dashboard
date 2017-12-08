@@ -11,7 +11,6 @@ const editorStyle = {
     height: '99vh'
 }
 
-//https://groups.google.com/forum/#!topic/blockly/w4LUJuY3xJo
 export default class Designer extends React.Component {
     constructor() {
         super();
@@ -138,6 +137,7 @@ export default class Designer extends React.Component {
 
         require('./../blocks/LEDBlock');
         require('./../blocks/RunMotorForTime');
+        require('./../blocks/RunMotorSpeed');
         require('./../blocks/DriveSetupBlock');
         require('./../blocks/MotorOutputBlock');
         require('./../blocks/DriveControlBlock');
