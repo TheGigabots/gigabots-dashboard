@@ -40,8 +40,11 @@ class AppStoreClz {
 
     connectToBot(botShortId) {
         this.client.queryDevices([botShortId], (err, results) => {
-            if (results && results.devices) {
+            if (results && results.devices && results.devices.length > 0) {
                 this.subQueue.push({type: "botConnect", botId: botShortId, id: results.devices[0].id});
+            }
+            else {
+                console.error(`Failed to look up ${botShortId}`);
             }
         })
     }

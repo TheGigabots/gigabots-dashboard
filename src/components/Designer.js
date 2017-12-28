@@ -83,7 +83,7 @@ export default class Designer extends React.Component {
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+       // window.removeEventListener('resize', () => this.resize());
     }
 
     friendOptions() {
@@ -171,31 +171,25 @@ export default class Designer extends React.Component {
         }
 
         return (
-            <div>
-                <div id="blocklyContainer" className={editorStyle}>
-                    <div id="blocklyDiv" style={blocklyDivStyle} ref={(d) => {
-                        this.blocklyDiv = d
-                    }}></div>
+                <div>
+                    <div id="blocklyContainer" className={editorStyle}>
+                        <div id="blocklyDiv" style={blocklyDivStyle} ref={(d) => {
+                            this.blocklyDiv = d
+                        }}></div>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+
     }
 }
-
-/*
-<CodeMirror value={this.state.code} options={{
-    mode: 'javascript',
-    theme: 'material',
-    readOnly: true
-}}/>
-*/
 
 
 Designer.propTypes = {
     loadFromLocalStorage: PropTypes.bool.isRequired,
     gigabot: PropTypes.object.isRequired,
     codeChangeListener: PropTypes.func.isRequired,
-    loadXMLFunc: PropTypes.func.isRequired
+    loadXMLFunc: PropTypes.func.isRequired,
+    visible: PropTypes.bool.isRequired
 };
 
 

@@ -2,14 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Card, {CardContent} from 'material-ui/Card';
-import {Button} from 'material-ui';
 import AppStore from './../../store/AppStore';
-import ArrowUp from 'material-ui-icons/KeyboardArrowUp';
-import ArrowDown from 'material-ui-icons/KeyboardArrowDown';
-import {MenuItem} from 'material-ui/Menu';
-import Select from 'material-ui/Select';
 import Motors from './../../blocks/Motors';
-import Grid from 'material-ui/Grid';
+import nipplejs from 'nipplejs';
 
 
 import Typography from 'material-ui/Typography';
@@ -68,13 +63,21 @@ class DriveCard extends React.Component {
         this.nippleManager.on('start end move', (evt, data) => {
 
             if (evt.type === 'move') {
-                let percent = Math.ceil(data.distance * 2, 100);
-                let rotationSpeed = Math.round((percent * 1024) / 100);
-                AppStore.startMotor(this.props.gigabot.id, this.props.motor, 'forward', rotationSpeed);
+
+                if( data.direction ) {
+                    console.log(data.direction)
+                    let reverse = data.direction.y === 'down';
+
+                    let percent = Math.ceil(data.distance * 2, 100);
+                    let rotationSpeed =Motors.toRotationSpeed(percent, reverse);
+
+                    console.log(`Drive l:${rotationSpeed} r:${rotationSpeed}`);
+                    AppStore.drive(this.props.gigabot.id, rotationSpeed, rotationSpeed);
+                }
             }
 
             if (evt.type === 'end') {
-                AppStore.stopMotor(this.props.gigabot.id, this.props.motor);
+                AppStore.drive(this.props.gigabot.id, 0, 0);
             }
         })
     }
@@ -137,4 +140,4 @@ DriveCard.propTypes = {
     gigabot: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, {withTheme: true})(MotorCard);
+export default withStyles(styles, {withTheme: true})(DriveCard);

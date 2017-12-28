@@ -21,6 +21,9 @@ import {CloudUpload, PlayCircleOutline, Settings, Stop} from "material-ui-icons"
 import {blueGrey, green, red, yellow} from 'material-ui/colors';
 import DownloadIcon from 'material-ui-icons/FileDownload';
 import UploadIcon from 'material-ui-icons/FileUpload';
+import Switch from 'material-ui/Switch';
+import {FormControlLabel} from 'material-ui/Form';
+import JavascriptViewer from "./JavascriptViewer";
 
 const styles = theme => ({
     root: {
@@ -86,7 +89,8 @@ class Main extends React.Component {
             importCodeDialog: false,
             friendsDialog: false,
             profileMenu: false,
-            loadDesignerFromLocalStorage: false
+            loadDesignerFromLocalStorage: false,
+            showDesigner: true
         }
     }
 
@@ -139,6 +143,18 @@ class Main extends React.Component {
                         <Typography type="title" color="inherit" className={classes.flex}>
                             THE GIGABOTS
                         </Typography>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={!this.state.showDesigner}
+                                    onChange={(event, checked) => this.setState({showDesigner: !this.state.showDesigner})}
+                                />
+                            }
+                            label={"SHOW JAVASCRIPT"}
+                        >
+
+                        </FormControlLabel>
+
                         <IconButton
                             disabled={!this.state.gigabot.connected}
                             onClick={() => this.handleConfigDialog(true)}>
@@ -185,12 +201,19 @@ class Main extends React.Component {
                     message={this.state.con.message}
                     autoHideDuration={99999}
                 />
+
+                <Snackbar open={this.state.snackBarError}
+                          message={this.state.snackBarError}
+                />
+
                 <Designer
                     loadFromLocalStorage={this.state.loadDesignerFromLocalStorage}
                     loadXMLFunc={() => this.handleDesignerLoadXML()}
                     codeChangeListener={(js, xml) => this.handleDesignerCodeChange(js, xml)}
                     gigabot={this.state.gigabot}
+                    visible={this.state.showDesigner}
                 />
+                <JavascriptViewer javascript={this.state.designerCode.js}/>
                 {this.props.children}
             </div>
         )
