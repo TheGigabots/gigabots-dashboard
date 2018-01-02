@@ -2,21 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import List, {ListItem, ListItemText} from 'material-ui/List';
 import {Button, IconButton, TextField} from 'material-ui';
-import {grey} from "material-ui/colors";
 import DeleteIcon from "material-ui-icons/Delete";
 import AppStore from "./../store/AppStore";
 import _ from "lodash";
 import Dialog, {DialogContent, DialogTitle} from 'material-ui/Dialog';
-
-const iconButtonElement = (
-    <IconButton
-        touch={true}
-        tooltip="Remove robot friend"
-        tooltipPosition="bottom-left"
-    >
-        <DeleteIcon color={grey[400]}/>
-    </IconButton>
-);
 
 export default class Friends extends React.Component {
     constructor(props, context) {
@@ -30,7 +19,7 @@ export default class Friends extends React.Component {
         return (
             <Dialog
                 open={this.props.open}
-                onRequestClose={this.props.closeFunc}
+                onClose={this.props.closeFunc}
             >
                 <DialogTitle>Friends</DialogTitle>
                 <DialogContent>

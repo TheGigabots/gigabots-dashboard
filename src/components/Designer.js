@@ -7,6 +7,7 @@ import Blockly from 'node-blockly/browser';
 import GigabotsToolbox from './../blocks/GigabotsToolbox';
 import {reactLocalStorage} from 'reactjs-localstorage';
 
+
 const editorStyle = {
     height: '99vh'
 }
@@ -189,7 +190,6 @@ Designer.propTypes = {
     gigabot: PropTypes.object.isRequired,
     codeChangeListener: PropTypes.func.isRequired,
     loadXMLFunc: PropTypes.func.isRequired,
-    visible: PropTypes.bool.isRequired
 };
 
 

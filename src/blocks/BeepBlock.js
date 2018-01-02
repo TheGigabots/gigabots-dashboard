@@ -21,5 +21,5 @@ Blockly.Blocks['beep'] = {
 Blockly.JavaScript['beep'] = function(block) {
     var number_frequency = block.getFieldValue('FREQUENCY');
     var number_duration = block.getFieldValue('DURATION');
-    return `bot.beep( ${number_frequency}, ${number_duration}) ;\n`;
+    return `bot.beep( ${number_frequency}, ${number_duration});\n`;
 };

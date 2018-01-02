@@ -119,8 +119,12 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
   </category>
   <category name="Loops">
     <block type="wait">
-      <field name="WAITTIME">0</field>
-      <field name="TIMESCALE">milliseconds</field>
+      <value name="TIME">
+        <block type="time_in_millis">
+          <field name="TIME">1</field>
+          <field name="TIMESCALE">seconds</field>
+        </block>
+      </value>
     </block>
     <block type="every">
       <field name="WAITTIME">0</field>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Button, Card, CardActions, Icon, Slide, TextField} from "material-ui";
+import {Button, Card, CardActions, Icon, TextField} from "material-ui";
 import Typography from 'material-ui/Typography';
 import AppStore from "./../store/AppStore";
 import Friends from "./Friends";

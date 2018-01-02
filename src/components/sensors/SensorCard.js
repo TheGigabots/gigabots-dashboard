@@ -4,11 +4,8 @@ import {withStyles} from 'material-ui/styles';
 import Card, {CardContent, CardMedia} from 'material-ui/Card';
 import {Palette} from "material-ui-icons";
 import {blue, brown, green, grey, red, yellow} from 'material-ui/colors';
-
-
 import Typography from 'material-ui/Typography';
 import Checkbox from 'material-ui/Checkbox';
-
 
 const styles = theme => ({
     card: {

@@ -12,7 +12,7 @@ export default class ImportCodeDialog extends React.Component {
     render() {
         return (
             <Dialog open={this.props.open}
-                    onRequestClose={this.props.closeFunc}>
+                    onClose={this.props.closeFunc}>
                 <DialogTitle>Upload Code</DialogTitle>
                 <DialogContent>
                     <Dropzone onDrop={this.onDrop.bind(this)} multiple={false}>

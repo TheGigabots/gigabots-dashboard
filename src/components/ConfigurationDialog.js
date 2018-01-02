@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Button, Slide} from "material-ui";
+import {Button} from "material-ui";
 import {reactLocalStorage} from 'reactjs-localstorage';
 import SensorCard from './sensors/SensorCard'
 import MotorCard from './sensors/MotorCard'
-import DriveCard from './sensors/DriveCard';
 import Grid from 'material-ui/Grid';
 
 import Dialog, {DialogActions, DialogContent, DialogTitle,} from 'material-ui/Dialog';

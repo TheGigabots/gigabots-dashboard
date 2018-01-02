@@ -24,6 +24,8 @@ import UploadIcon from 'material-ui-icons/FileUpload';
 import Switch from 'material-ui/Switch';
 import {FormControlLabel} from 'material-ui/Form';
 import JavascriptViewer from "./JavascriptViewer";
+import * as Babel from "@babel/standalone";
+
 
 const styles = theme => ({
     root: {
@@ -83,14 +85,14 @@ class Main extends React.Component {
             con: AppStore.store.getState().con,
             auth: AppStore.store.getState().auth,
             gigabot: new Gigabot(AppStore.store.getState().gigabot),
-            designerCode: {xml: null, js: null},
+            designerCode: {xml: null, js: null, es5: null},
             connectDialog: false,
             configurationDialog: false,
             importCodeDialog: false,
             friendsDialog: false,
             profileMenu: false,
             loadDesignerFromLocalStorage: false,
-            showDesigner: true
+            showCode: false
         }
     }
 
@@ -146,8 +148,8 @@ class Main extends React.Component {
                         <FormControlLabel
                             control={
                                 <Switch
-                                    checked={!this.state.showDesigner}
-                                    onChange={(event, checked) => this.setState({showDesigner: !this.state.showDesigner})}
+                                    checked={this.state.showCode}
+                                    onChange={(event, checked) => this.setState({showCode: !this.state.showCode})}
                                 />
                             }
                             label={"SHOW JAVASCRIPT"}
@@ -211,9 +213,14 @@ class Main extends React.Component {
                     loadXMLFunc={() => this.handleDesignerLoadXML()}
                     codeChangeListener={(js, xml) => this.handleDesignerCodeChange(js, xml)}
                     gigabot={this.state.gigabot}
-                    visible={this.state.showDesigner}
                 />
-                <JavascriptViewer javascript={this.state.designerCode.js}/>
+                {this.state.showCode &&
+                <div>
+                    <Typography>Javascript</Typography>
+                    < JavascriptViewer javascript={this.state.designerCode.js}/>
+                </div>
+                }
+
                 {this.props.children}
             </div>
         )
@@ -232,7 +239,7 @@ class Main extends React.Component {
                     vertical: 'top',
                     horizontal: 'right',
                 }}
-                onRequestClose={() => {
+                onClose={() => {
                     this.setState({
                         anchorEl: null,
                         profileMenu: false
@@ -257,8 +264,18 @@ class Main extends React.Component {
 
 
     handleDesignerCodeChange(js, xml) {
+
+        let es5 = "";
+
+
+        try {
+            es5 = Babel.transform(js, {presets: ['es2017', 'es2015']}).code;
+        } catch (e) {
+            console.error(e);
+        }
+
         this.setState({
-            designerCode: {xml: xml, js: js}
+            designerCode: {xml: xml, js: js, es5: es5}
         })
     }
 
@@ -270,7 +287,7 @@ class Main extends React.Component {
 
     handleCloudUpload() {
         let botId = this.state.gigabot.id;
-        AppStore.publishScript(botId, this.state.designerCode.js);
+        AppStore.publishScript(botId, this.state.designerCode.es5);
     }
 
 

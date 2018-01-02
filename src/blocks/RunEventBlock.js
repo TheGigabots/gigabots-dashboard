@@ -16,7 +16,7 @@ Blockly.Blocks['run_event'] = {
 
 Blockly.JavaScript['run_event'] = function (block) {
     var func = [];
-    func.push('function onRun( ) {');
+    func.push('onRun = async () => {');
     func.push(Blockly.JavaScript.statementToCode(block, 'BODY'));
     func.push('}');
     return func.join('\n');

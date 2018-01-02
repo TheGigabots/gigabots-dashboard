@@ -11,6 +11,8 @@ Blockly.Blocks['run_motor_time'] = {
             .appendField("Speed")
             .appendField(new Blockly.FieldNumber(0, -100, 100), "SPEED");
         this.appendDummyInput()
+            .appendField("%");
+        this.appendDummyInput()
             .appendField("Time");
         this.appendValueInput("RUNTIME")
             .setCheck("time_in_millis");
@@ -22,7 +24,6 @@ Blockly.Blocks['run_motor_time'] = {
         this.setHelpUrl("");
     }
 };
-
 Blockly.JavaScript['run_motor_time'] = function(block) {
 
     var motor = Blockly.JavaScript.valueToCode(block, 'MOTOR', Blockly.JavaScript.ORDER_ATOMIC);
@@ -30,5 +31,5 @@ Blockly.JavaScript['run_motor_time'] = function(block) {
     var percentSpeed = block.getFieldValue('SPEED');
 
     var value_runtime = Blockly.JavaScript.valueToCode(block, 'RUNTIME', Blockly.JavaScript.ORDER_ATOMIC);
-    return `bot.motors.${actualMotor.motor}.runForTime( ${value_runtime}, ${Motors.toRotationSpeed(percentSpeed, actualMotor.reverse)});\n`;
+    return `await bot.motors.${actualMotor.motor}.runForTime( ${value_runtime}, ${Motors.toRotationSpeed(percentSpeed, actualMotor.reverse)});\n`;
 };
