@@ -142,6 +142,7 @@ export default class Designer extends React.Component {
         require('./../blocks/DriveSetupBlock');
         require('./../blocks/MotorOutputBlock');
         require('./../blocks/DriveControlBlock');
+        require('./../blocks/StopMotorBlock')
 
     }
 

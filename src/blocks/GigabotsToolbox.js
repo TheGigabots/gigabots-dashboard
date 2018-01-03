@@ -70,10 +70,6 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
     </block>
   </category>
   <category name="Motors">
-    <block type="drive_control">
-      <field name="NAME">forward</field>
-      <field name="SPEED">0</field>
-    </block>
     <block type="drive_setup">
       <value name="LEFT">
         <block type="motor_output">
@@ -87,6 +83,10 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
           <field name="REVERSE">FALSE</field>
         </block>
       </value>
+    </block>
+    <block type="drive_control">
+      <field name="NAME">forward</field>
+      <field name="SPEED">0</field>
     </block>
     <block type="run_motor_speed">
       <field name="SPEED">0</field>
@@ -109,6 +109,14 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
         <block type="time_in_millis">
           <field name="TIME">1</field>
           <field name="TIMESCALE">seconds</field>
+        </block>
+      </value>
+    </block>
+    <block type="stop_motor">
+      <value name="MOTOR">
+        <block type="motor_output">
+          <field name="MOTOR">A</field>
+          <field name="REVERSE">TRUE</field>
         </block>
       </value>
     </block>
