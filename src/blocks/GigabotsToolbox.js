@@ -21,6 +21,13 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
     <block type="friend_input">
       <field name="NAME">bot</field>
     </block>
+    <block type="log">
+      <value name="PRINTABLE">
+        <block type="text">
+          <field name="TEXT">hello world!</field>
+        </block>
+      </value>
+    </block>
   </category>
   <category name="Audio">
     <block type="say">
@@ -35,7 +42,12 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
     </block>
     <block type="beep">
       <field name="FREQUENCY">20</field>
-      <field name="DURATION">1</field>
+      <value name="DURATION">
+        <block type="time_in_millis">
+          <field name="TIME">1</field>
+          <field name="TIMESCALE">seconds</field>
+        </block>
+      </value>
     </block>
   </category>
   <category name="Input">
@@ -60,6 +72,9 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
           <field name="NAME">bot</field>
         </block>
       </value>
+    </block>
+    <block type="color_sensor_value">
+      <field name="COLOR">BLACK</field>
     </block>
     <block type="ultrasonic_sensor">
       <value name="shortCode">

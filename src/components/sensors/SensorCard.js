@@ -154,7 +154,7 @@ class SensorCard extends React.Component {
         return (
             <div>
                 <Palette style={{fill: fill, width: 36, height: 36}}/>
-                <Typography>{name}</Typography>
+                <Typography>{name} ({sensorVal})</Typography>
             </div>
         )
     }

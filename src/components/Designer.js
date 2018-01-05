@@ -127,6 +127,7 @@ export default class Designer extends React.Component {
         require('./../blocks/TouchSensorBlock');
         require('./../blocks/InfraredSensorBlock');
         require('./../blocks/ColorSensorBlock');
+        require('./../blocks/ColorSensorValueBlock');
         require('./../blocks/UltrasonicSensorBlock');
 
 
