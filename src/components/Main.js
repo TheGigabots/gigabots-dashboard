@@ -15,16 +15,14 @@ import S from "string";
 import ConfigurationDialog from './ConfigurationDialog'
 import Friends from './Friends';
 import ImportCodeDialog from './ImportCodeDialog';
-import {ListItemIcon, ListItemText} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import {CloudUpload, PlayCircleOutline, Settings, Stop} from "material-ui-icons";
 import {blueGrey, green, red, yellow} from 'material-ui/colors';
-import DownloadIcon from 'material-ui-icons/FileDownload';
-import UploadIcon from 'material-ui-icons/FileUpload';
 import Switch from 'material-ui/Switch';
 import {FormControlLabel} from 'material-ui/Form';
 import JavascriptViewer from "./JavascriptViewer";
 import * as Babel from "@babel/standalone";
+import Footer from './Footer'
 
 
 const styles = theme => ({
@@ -220,8 +218,8 @@ class Main extends React.Component {
                     < JavascriptViewer javascript={this.state.designerCode.js}/>
                 </div>
                 }
-
                 {this.props.children}
+                <Footer downloadFunc={() => this.handleDownloadFile()} uploadFunc={() => this.handleUpload()}/>
             </div>
         )
     }
@@ -248,25 +246,14 @@ class Main extends React.Component {
             >
                 <MenuItem onClick={() => this.handleFriends()}>Friends</MenuItem>
                 <Divider/>
-                <MenuItem onClick={() => this.handleUpload()}>
-                    <ListItemIcon><UploadIcon/></ListItemIcon>
-                    <ListItemText inset primary="Upload Code"/>
-                </MenuItem>
-                <MenuItem onClick={() => this.handleDownloadFile()}>
-                    <ListItemIcon><DownloadIcon/></ListItemIcon>
-                    <ListItemText inset primary="Download Code"/>
-                </MenuItem>
                 <Divider/>
                 <MenuItem onClick={() => this.handleDisconnect()}>Disconnect</MenuItem>
             </Menu>
         )
     }
 
-
     handleDesignerCodeChange(js, xml) {
-
         let es5 = "";
-
 
         try {
             es5 = Babel.transform(js, {presets: ['es2017', 'es2015']}).code;
@@ -290,9 +277,7 @@ class Main extends React.Component {
         AppStore.publishScript(botId, this.state.designerCode.es5);
     }
 
-
     handleDownloadFile() {
-
         if (this.state.designerCode && this.state.designerCode.xml) {
             var blob = new Blob([this.state.designerCode.xml], {type: "text/xml"})
                 , uri = URL.createObjectURL(blob)

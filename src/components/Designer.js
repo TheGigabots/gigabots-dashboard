@@ -72,7 +72,11 @@ export default class Designer extends React.Component {
         let loadedXML = reactLocalStorage.get("editorXML");
 
         if (loadedXML) {
+            Blockly.mainWorkspace.clear();
             Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(loadedXML), this.blocklyEditor);
+
+
+
             let js = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
             this.props.codeChangeListener(js, loadedXML);
         }
@@ -80,11 +84,10 @@ export default class Designer extends React.Component {
         if (notify) {
             this.props.loadXMLFunc();
         }
-
     }
 
     componentWillUnmount() {
-       // window.removeEventListener('resize', () => this.resize());
+        // window.removeEventListener('resize', () => this.resize());
     }
 
     friendOptions() {
@@ -174,15 +177,14 @@ export default class Designer extends React.Component {
         }
 
         return (
-                <div>
-                    <div id="blocklyContainer" className={editorStyle}>
-                        <div id="blocklyDiv" style={blocklyDivStyle} ref={(d) => {
-                            this.blocklyDiv = d
-                        }}></div>
-                    </div>
+            <div>
+                <div id="blocklyContainer" className={editorStyle}>
+                    <div id="blocklyDiv" style={blocklyDivStyle} ref={(d) => {
+                        this.blocklyDiv = d
+                    }}></div>
                 </div>
-            );
-
+            </div>
+        );
     }
 }
 

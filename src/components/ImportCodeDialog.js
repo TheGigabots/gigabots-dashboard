@@ -30,7 +30,6 @@ export default class ImportCodeDialog extends React.Component {
         reader.onload = (e) => {
 
             let xmlText = e.target.result;
-
             try {
                 let dom = Blockly.Xml.textToDom(xmlText)
                 //todo other dom tests?
@@ -41,7 +40,6 @@ export default class ImportCodeDialog extends React.Component {
                 console.error(e);
             }
         }
-
         reader.readAsText(files[0]);
         this.setState({
             files
