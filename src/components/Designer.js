@@ -76,7 +76,6 @@ export default class Designer extends React.Component {
             Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(loadedXML), this.blocklyEditor);
 
 
-
             let js = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
             this.props.codeChangeListener(js, loadedXML);
         }
@@ -151,8 +150,6 @@ export default class Designer extends React.Component {
     }
 
     resize() {
-        this.blocklyDiv.style.width = this.blocklyDiv.parentNode.clientWidth - 10;
-        this.blocklyDiv.style.height = this.blocklyDiv.parentNode.clientHeight - 10;
         Blockly.svgResize(this.blocklyEditor);
         this.forceUpdate()
     }
@@ -164,25 +161,21 @@ export default class Designer extends React.Component {
 
         let blocklyDivStyle = {
             height: 800,
-            width: 1000
+            width: 800,
         }
 
         if (this.blocklyDiv) {
             let calcWidth = this.blocklyDiv.parentNode.clientWidth;
             let calcHeight = this.blocklyDiv.parentNode.clientHeight;
-            blocklyDivStyle.width = calcWidth;
+            blocklyDivStyle.width = calcWidth - 20;
             blocklyDivStyle.height = calcHeight;
-            //TODO Height...
-            //console.log(`w:${calcWidth} h:${calcHeight}`);
         }
 
         return (
-            <div>
-                <div id="blocklyContainer" className={editorStyle}>
-                    <div id="blocklyDiv" style={blocklyDivStyle} ref={(d) => {
-                        this.blocklyDiv = d
-                    }}></div>
-                </div>
+            <div id="blocklyContainer">
+                <div id="blocklyDiv" style={blocklyDivStyle} ref={(d) => {
+                    this.blocklyDiv = d
+                }}></div>
             </div>
         );
     }

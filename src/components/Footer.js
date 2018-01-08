@@ -57,11 +57,12 @@ class Footer extends React.Component {
 
     render() {
         return (
+            <div className={this.props.classes.root}>
             <Drawer
                 type="permanent"
                 anchor="bottom"
             >
-                <Grid container classes={{height:"100%"}} >
+                <Grid container >
                     <Grid item xs={3}>
                         <Button onClick={this.props.downloadFunc}>
                             <DownloadIcon/>
@@ -78,6 +79,7 @@ class Footer extends React.Component {
                     </Grid>
                 </Grid>
             </Drawer>
+            </div>
         )
     }
 }
