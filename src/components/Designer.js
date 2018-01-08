@@ -64,7 +64,7 @@ export default class Designer extends React.Component {
             this.props.codeChangeListener(js, xml_text);
         })
 
-        window.addEventListener('resize', () => this.resize())
+        window.addEventListener('resize', () => this.resize(), false)
     }
 
 
@@ -84,11 +84,7 @@ export default class Designer extends React.Component {
             this.props.loadXMLFunc();
         }
     }
-
-    componentWillUnmount() {
-        // window.removeEventListener('resize', () => this.resize());
-    }
-
+    
     friendOptions() {
         if (this.props.gigabot) {
             const friendsList = this.props.gigabot.friendsAsList();
