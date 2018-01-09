@@ -84,7 +84,7 @@ export default class Designer extends React.Component {
             this.props.loadXMLFunc();
         }
     }
-    
+
     friendOptions() {
         if (this.props.gigabot) {
             const friendsList = this.props.gigabot.friendsAsList();
@@ -157,7 +157,7 @@ export default class Designer extends React.Component {
 
         let blocklyDivStyle = {
             height: 800,
-            width: 800,
+            width: 1000,
         }
 
         if (this.blocklyDiv) {

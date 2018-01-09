@@ -29,7 +29,7 @@ Blockly.JavaScript['every'] = function(block) {
     }
 
     var func = [];
-    func.push('setInterval(function(){');
+    func.push('setInterval( async () =>{');
     func.push(statements_body );
     func.push(`}, ${ms})`);
     return func.join('\n');
