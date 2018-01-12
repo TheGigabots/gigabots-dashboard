@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['beep'] = {
     init: function() {
         this.appendDummyInput()
@@ -17,6 +18,7 @@ Blockly.Blocks['beep'] = {
         this.setHelpUrl("");
     }
 };
+*/
 
 
 Blockly.JavaScript['beep'] = function(block) {

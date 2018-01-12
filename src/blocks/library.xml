@@ -1,0 +1,156 @@
+<xml xmlns="http://www.w3.org/1999/xhtml"><block type="factory_base" id="wN;1So#^*!X)(vZnHv{q" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">battery_voltage</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="QVPw!wG=50xp3Q!!LZzf">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="IQQ9;%na={F4Tkb8Tj5!">
+            <field name="TEXT">Battery Voltage</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="K^ggDgVQYQf4}7:SJq_1" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="_tu2mLwPK4/_rF+AL{4q" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="_0N%%Kwy/],bfGRyzU@%"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="*$?y_N?xPuKPSi/*zelZ">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="etc)SeJ|K5e{k4Og#@/5" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">beep</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="Q8i#1y6SAKg`pV}_`6f(">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="+Qh%dx:ZUw$0f)j#i-Og">
+            <field name="TEXT">Beep Frequency</field>
+            <next>
+              <block type="field_number" id="~e-SEC,OsTbi{}Go5Zyh">
+                <field name="VALUE">100</field>
+                <field name="FIELDNAME">FREQUENCY</field>
+                <field name="MIN">20</field>
+                <field name="MAX">10000</field>
+                <field name="PRECISION">1</field>
+                <next>
+                  <block type="field_static" id="3=6K!)a]71|`_AgIG9:R">
+                    <field name="TEXT">Hz</field>
+                    <next>
+                      <block type="field_static" id="aH+*TN|f[+c+KciONZHv">
+                        <field name="TEXT">Time</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="h!*++Bh|Fh!XQm79_5YB">
+            <field name="INPUTNAME">DURATION</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="5~$+)?m0Mav.5;*J$_O]"></shadow>
+              <block type="type_other" id="FuvFpxJ!}sFXzZw=U*DE">
+                <field name="TYPE">time_in_millis</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="cOv:20jA+YBRZ=pOIw?8" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Zk7{YZuAjk#8-y5RvJ3P" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="4.|~a/3|Ws`HoValn4E{"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="*krU16PK!DTibu0MoQVa"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H.J+VA3=j2q`pCe5BZl!">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="pr[GJDRP){(3_L$X0g7[" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">time_in_millis</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="P}Ov@(MQKl.)v8buvy^C">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=";nL6`y3}DsQvHaNI6U-b">
+            <field name="TEXT">Time</field>
+            <next>
+              <block type="field_number" id="gph.bZcPpN*$pfE4Qo+I">
+                <field name="VALUE">1</field>
+                <field name="FIELDNAME">TIME</field>
+                <field name="MIN">1</field>
+                <field name="MAX">100000</field>
+                <field name="PRECISION">1</field>
+                <next>
+                  <block type="field_dropdown" id="-7)5yDi_B/DKfjD(7~0Z">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">TIMESCALE</field>
+                    <field name="USER0">seconds</field>
+                    <field name="CPU0">seconds</field>
+                    <field name="USER1">milliseconds</field>
+                    <field name="CPU1">milliseconds</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="32^CDXDPX#5{;{AFRz//" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="xP#bW~U=,/z3D,vO%Ja*" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="Td8pv48hKbz$z8lK8[{}"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="}s@2N5Kk1gw[8#i2i#6b">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block></xml>

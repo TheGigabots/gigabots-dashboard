@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['drive_control'] = {
     init: function() {
         this.appendDummyInput()
@@ -18,6 +19,7 @@ Blockly.Blocks['drive_control'] = {
         this.setHelpUrl("");
     }
 };
+*/
 
 
 Blockly.JavaScript['drive_control'] = function(block) {

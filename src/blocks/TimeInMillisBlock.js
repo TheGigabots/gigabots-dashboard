@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['time_in_millis'] = {
     init: function() {
         this.appendDummyInput()
@@ -12,6 +13,7 @@ Blockly.Blocks['time_in_millis'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 
 Blockly.JavaScript['time_in_millis'] = function (block) {

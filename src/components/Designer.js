@@ -7,7 +7,6 @@ import Blockly from 'node-blockly/browser';
 import GigabotsToolbox from './../blocks/GigabotsToolbox';
 import {reactLocalStorage} from 'reactjs-localstorage';
 
-
 const editorStyle = {
     height: '99vh'
 }
@@ -108,6 +107,11 @@ export default class Designer extends React.Component {
      * Don't try and require these blocks up top before blockly is properly initialized.
      */
     loadCustomBlocks() {
+        //Most block definitions move to customBlocks, direct export
+        //from block editor.  Any local definitions should load afterwards
+        //and will override the editor produced blocks.
+        require('./../blocks/customBlocks');
+        
         require('./../blocks/StartEventBlock');
         require('./../blocks/RunEventBlock');
 
@@ -151,6 +155,7 @@ export default class Designer extends React.Component {
     }
 
     render() {
+
         if (this.props.loadFromLocalStorage) {
             this.loadXMLFromLocalStorage(true);
         }

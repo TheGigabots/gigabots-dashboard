@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['color_sensor_value'] = {
     init: function() {
         this.appendDummyInput()
@@ -13,6 +14,7 @@ Blockly.Blocks['color_sensor_value'] = {
         this.setHelpUrl("");
     }
 };
+*/
 
 
 Blockly.JavaScript['color_sensor_value'] = function(block) {

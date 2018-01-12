@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['battery_voltage'] = {
     init: function() {
         this.appendDummyInput()
@@ -10,6 +11,7 @@ Blockly.Blocks['battery_voltage'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 Blockly.JavaScript['battery_voltage'] = function(block) {
     // TODO: Assemble JavaScript into code variable.

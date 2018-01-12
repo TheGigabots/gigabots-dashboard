@@ -1,7 +1,7 @@
 
 
 /*
- https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#8cpz6d
+ https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#tbsiaq
  */
 const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
   <category name="Basic" colour="#a55b5b">

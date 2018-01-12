@@ -2,7 +2,7 @@
 import Blockly from 'node-blockly/browser';
 import S from 'string';
 
-
+/*
 Blockly.Blocks['color_sensor'] = {
     init: function() {
         this.appendDummyInput()
@@ -18,6 +18,7 @@ Blockly.Blocks['color_sensor'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 
 Blockly.JavaScript['color_sensor'] = function(block) {
