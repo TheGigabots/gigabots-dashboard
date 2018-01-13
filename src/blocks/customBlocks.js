@@ -51,7 +51,7 @@ Blockly.Blocks['color_sensor'] = {
         .setCheck("friend_input");
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(0);
+    this.setColour(30);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -71,11 +71,11 @@ Blockly.Blocks['friend_input'] = {
 Blockly.Blocks['color_sensor_value'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Color Sensor Value")
+        .appendField("Color")
         .appendField(new Blockly.FieldDropdown([["BLACK","1"], ["BLUE","2"], ["GREEN","3"], ["YELLOW","4"], ["RED","5"], ["WHITE","6"], ["BROWN","7"]]), "COLOR");
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip("");
+ this.setTooltip("Use this block to check the color sensor");
  this.setHelpUrl("");
   }
 };
@@ -107,6 +107,71 @@ Blockly.Blocks['drive_setup'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['every'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("every")
+        .appendField("Time");
+    this.appendValueInput("TIME")
+        .setCheck("time_in_millis");
+    this.appendStatementInput("BODY")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(120);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['ir_sensor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Infrared Sensor")
+        .appendField("shortCode");
+    this.appendValueInput("shortCode")
+        .setCheck("friend_input");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['led'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("LED")
+        .appendField(new Blockly.FieldDropdown([["left","left"], ["right","right"]]), "POS_DROPDOWN")
+        .appendField("Color")
+        .appendField(new Blockly.FieldDropdown([["red","red"], ["green","green"], ["off","off"]]), "COLOR_DROPDOWN");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['log'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("print")
+        .appendField("string");
+    this.appendValueInput("PRINTABLE")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
   }

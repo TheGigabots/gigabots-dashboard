@@ -111,7 +111,7 @@ export default class Designer extends React.Component {
         //from block editor.  Any local definitions should load afterwards
         //and will override the editor produced blocks.
         require('./../blocks/customBlocks');
-        
+
         require('./../blocks/StartEventBlock');
         require('./../blocks/RunEventBlock');
 

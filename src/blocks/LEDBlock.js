@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['led'] = {
     init: function() {
         this.appendDummyInput()
@@ -18,6 +19,7 @@ Blockly.Blocks['led'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 
 Blockly.JavaScript['led'] = function(block) {

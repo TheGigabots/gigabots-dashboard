@@ -2,6 +2,7 @@ import Blockly from 'node-blockly/browser';
 import S from 'string';
 
 
+/*
 Blockly.Blocks['ir_sensor'] = {
     init: function() {
         this.appendDummyInput()
@@ -17,6 +18,7 @@ Blockly.Blocks['ir_sensor'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 
 Blockly.JavaScript['ir_sensor'] = function(block) {

@@ -1,5 +1,7 @@
 import Blockly from 'node-blockly/browser';
 
+
+/*
 Blockly.Blocks['every'] = {
     init: function() {
         this.appendDummyInput()
@@ -15,22 +17,16 @@ Blockly.Blocks['every'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 
 Blockly.JavaScript['every'] = function(block) {
-    var number_waittime = block.getFieldValue('WAITTIME');
-    var dropdown_timescale = block.getFieldValue('TIMESCALE');
+    var value_runtime = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
     var statements_body = Blockly.JavaScript.statementToCode(block, 'BODY');
-
-    let ms = number_waittime;
-
-    if (dropdown_timescale === 'seconds') {
-        ms = Number(number_waittime) * 1000;
-    }
 
     var func = [];
     func.push('setInterval( async () =>{');
     func.push(statements_body );
-    func.push(`}, ${ms})`);
+    func.push(`}, ${value_runtime})`);
     return func.join('\n');
 };

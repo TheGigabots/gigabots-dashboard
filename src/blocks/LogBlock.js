@@ -1,6 +1,7 @@
 
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['log'] = {
     init: function () {
         this.appendDummyInput()
@@ -15,6 +16,7 @@ Blockly.Blocks['log'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 Blockly.JavaScript['log'] = function (block) {
     var value_printable = Blockly.JavaScript.valueToCode(block, 'PRINTABLE', Blockly.JavaScript.ORDER_ATOMIC);
