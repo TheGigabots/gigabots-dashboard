@@ -2,6 +2,7 @@
 import Blockly from 'node-blockly/browser';
 import S from 'string';
 
+/*
 Blockly.Blocks['ultrasonic_sensor'] = {
     init: function () {
         this.appendDummyInput()
@@ -17,6 +18,7 @@ Blockly.Blocks['ultrasonic_sensor'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 
 Blockly.JavaScript['ultrasonic_sensor'] = function (block) {

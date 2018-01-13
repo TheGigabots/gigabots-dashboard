@@ -1,7 +1,7 @@
 import Blockly from 'node-blockly/browser';
 import S from 'string';
 
-
+/*
 Blockly.Blocks['touch_sensor'] = {
     init: function () {
         this.appendDummyInput()
@@ -17,7 +17,7 @@ Blockly.Blocks['touch_sensor'] = {
         this.setHelpUrl('');
     }
 };
-
+*/
 Blockly.JavaScript['touch_sensor'] = function (block) {
     var value_shortcode = Blockly.JavaScript.valueToCode(block, 'shortCode', Blockly.JavaScript.ORDER_NONE);
 

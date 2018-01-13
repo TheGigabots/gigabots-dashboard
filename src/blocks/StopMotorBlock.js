@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['stop_motor'] = {
     init: function() {
         this.appendDummyInput()
@@ -14,6 +15,7 @@ Blockly.Blocks['stop_motor'] = {
         this.setHelpUrl("");
     }
 };
+*/
 
 
 Blockly.JavaScript['stop_motor'] = function (block) {

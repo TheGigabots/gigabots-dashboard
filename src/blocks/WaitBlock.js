@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['wait'] = {
     init: function() {
         this.appendDummyInput()
@@ -16,12 +17,10 @@ Blockly.Blocks['wait'] = {
         this.setHelpUrl("");
     }
 };
+*/
 
 
 Blockly.JavaScript['wait'] = function (block) {
-
-
     var value_runtime = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
     return `await bot.wait(${value_runtime});\n`;
-
 };

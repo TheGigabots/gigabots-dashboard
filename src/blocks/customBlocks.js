@@ -3,7 +3,7 @@ Blockly.Blocks['battery_voltage'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Battery Voltage");
-    this.setOutput(true, null);
+    this.setOutput(true, "Number");
     this.setColour(30);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -49,7 +49,7 @@ Blockly.Blocks['color_sensor'] = {
     this.appendValueInput("shortCode")
         .setCheck("friend_input");
     this.setInputsInline(true);
-    this.setOutput(true, null);
+    this.setOutput(true, "Number");
     this.setColour(30);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -137,7 +137,7 @@ Blockly.Blocks['ir_sensor'] = {
     this.appendValueInput("shortCode")
         .setCheck("friend_input");
     this.setInputsInline(true);
-    this.setOutput(true, null);
+    this.setOutput(true, "Number");
     this.setColour(30);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -258,6 +258,89 @@ Blockly.Blocks['say'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['start_event'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Startup");
+    this.appendStatementInput("BODY")
+        .setCheck(null)
+        .appendField("do");
+    this.setColour(0);
+ this.setTooltip("Use this event to set up your robot");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['stop_motor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Stop motor");
+    this.appendValueInput("MOTOR")
+        .setCheck("motor_output");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['stop_all_motor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Stop ALL Motors");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['touch_sensor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Touch Sensor shortCode");
+    this.appendValueInput("shortCode")
+        .setCheck("friendInput");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['ultrasonic_sensor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Ultrasonic Sensor shortCode");
+    this.appendValueInput("shortCode")
+        .setCheck("friend_input");
+    this.setInputsInline(true);
+    this.setOutput(true, "Number");
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['wait'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Wait Time");
+    this.appendValueInput("TIME")
+        .setCheck("time_in_millis");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(120);
+ this.setTooltip("Wait for some time then proceed");
  this.setHelpUrl("");
   }
 };
