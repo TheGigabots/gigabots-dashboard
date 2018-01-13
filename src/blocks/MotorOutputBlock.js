@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['motor_output'] = {
     init: function() {
         this.appendDummyInput()
@@ -13,6 +14,7 @@ Blockly.Blocks['motor_output'] = {
         this.setHelpUrl('');
     }
 };
+*/
 
 Blockly.JavaScript['motor_output'] = function(block) {
     var dropdown_motor = block.getFieldValue('MOTOR');

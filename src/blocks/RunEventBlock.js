@@ -1,5 +1,6 @@
 import Blockly from 'node-blockly/browser';
 
+/*
 Blockly.Blocks['run_event'] = {
     init: function () {
         this.appendDummyInput()
@@ -12,7 +13,7 @@ Blockly.Blocks['run_event'] = {
         this.setHelpUrl('');
     }
 };
-
+*/
 
 Blockly.JavaScript['run_event'] = function (block) {
     var func = [];

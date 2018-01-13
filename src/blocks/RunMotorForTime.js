@@ -1,6 +1,7 @@
 import Blockly from 'node-blockly/browser';
 import Motors from './Motors'
 
+/*
 Blockly.Blocks['run_motor_time'] = {
     init: function() {
         this.appendDummyInput()
@@ -24,6 +25,7 @@ Blockly.Blocks['run_motor_time'] = {
         this.setHelpUrl("");
     }
 };
+*/
 Blockly.JavaScript['run_motor_time'] = function(block) {
 
     var motor = Blockly.JavaScript.valueToCode(block, 'MOTOR', Blockly.JavaScript.ORDER_ATOMIC);

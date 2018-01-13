@@ -1,5 +1,4 @@
 import Blockly from 'node-blockly/browser';
-
 Blockly.Blocks['battery_voltage'] = {
   init: function() {
     this.appendDummyInput()
@@ -172,6 +171,92 @@ Blockly.Blocks['log'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['motor_output'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Motor")
+        .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"], ["C","C"], ["D","D"]]), "MOTOR")
+        .appendField("Reverse")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "REVERSE");
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['run_event'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Run");
+    this.appendStatementInput("BODY")
+        .setCheck(null)
+        .appendField("do");
+    this.setColour(0);
+ this.setTooltip("This event fires after the startup event");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['run_motor_time'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Run motor");
+    this.appendValueInput("MOTOR")
+        .setCheck("motor_output");
+    this.appendDummyInput()
+        .appendField("Speed")
+        .appendField(new Blockly.FieldNumber(50, 0, 100, 1), "SPEED")
+        .appendField("% Time");
+    this.appendValueInput("RUNTIME")
+        .setCheck("time_in_millis");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['run_motor_speed'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Run motor");
+    this.appendValueInput("MOTOR")
+        .setCheck("motor_output");
+    this.appendDummyInput()
+        .appendField("Speed")
+        .appendField(new Blockly.FieldNumber(50, 0, 100, 1), "SPEED")
+        .appendField("%");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['say'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Say")
+        .appendField("Speed")
+        .appendField(new Blockly.FieldNumber(25, 1, 100, 1), "SPEED")
+        .appendField("% Pitch")
+        .appendField(new Blockly.FieldNumber(50, 1, 100, 1), "PITCH")
+        .appendField("%");
+    this.appendValueInput("textToSay")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
   }

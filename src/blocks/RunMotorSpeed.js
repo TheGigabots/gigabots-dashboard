@@ -2,6 +2,7 @@ import Blockly from 'node-blockly/browser';
 import Motors from './Motors'
 
 
+/*
 Blockly.Blocks['run_motor_speed'] = {
     init: function () {
         this.appendDummyInput()
@@ -19,6 +20,7 @@ Blockly.Blocks['run_motor_speed'] = {
         this.setHelpUrl("");
     }
 };
+*/
 
 
 Blockly.JavaScript['run_motor_speed'] = function (block) {
