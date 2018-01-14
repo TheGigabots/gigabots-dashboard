@@ -59,7 +59,8 @@ Blockly.Blocks['color_sensor'] = {
 Blockly.Blocks['friend_input'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Friend Block STUB");
+        .appendField("Friend Block STUB")
+        .appendField(new Blockly.FieldDropdown([["bot","bot"]]), "NAME");
     this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("Just a stub, this has to be defined in JS");
@@ -155,7 +156,7 @@ Blockly.Blocks['led'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
- this.setTooltip("");
+ this.setTooltip("Set color of LED on the EV3 brick");
  this.setHelpUrl("");
   }
 };

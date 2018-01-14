@@ -1,9 +1,4 @@
-
-
-/*
- https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#tbsiaq
- */
-const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
   <category name="Basic" colour="#a55b5b">
     <block type="start_event"></block>
     <block type="run_event"></block>
@@ -31,9 +26,8 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
   </category>
   <category name="Audio">
     <block type="say">
-      <field name="SPEED">175</field>
+      <field name="SPEED">100</field>
       <field name="PITCH">50</field>
-      <field name="FORMANT">0</field>
       <value name="textToSay">
         <block type="text">
           <field name="TEXT">I'm a gigabot</field>
@@ -51,7 +45,6 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
     </block>
   </category>
   <category name="Input">
-    <block type="battery_voltage"></block>
     <block type="touch_sensor">
       <value name="shortCode">
         <block type="friend_input">
@@ -73,15 +66,16 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
         </block>
       </value>
     </block>
-    <block type="color_sensor_value">
-      <field name="COLOR">BLACK</field>
-    </block>
     <block type="ultrasonic_sensor">
       <value name="shortCode">
         <block type="friend_input">
           <field name="NAME">bot</field>
         </block>
       </value>
+    </block>
+    <block type="battery_voltage"></block>
+    <block type="color_sensor_value">
+      <field name="COLOR">BLACK</field>
     </block>
   </category>
   <category name="Motors">
@@ -135,6 +129,7 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
         </block>
       </value>
     </block>
+    <block type="stop_all_motor"></block>
     <block type="motor_output">
       <field name="MOTOR">A</field>
       <field name="REVERSE">TRUE</field>
@@ -150,8 +145,12 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
       </value>
     </block>
     <block type="every">
-      <field name="WAITTIME">0</field>
-      <field name="TIMESCALE">milliseconds</field>
+      <value name="TIME">
+        <block type="time_in_millis">
+          <field name="TIME">1</field>
+          <field name="TIMESCALE">seconds</field>
+        </block>
+      </value>
     </block>
     <block type="controls_flow_statements" disabled="true">
       <field name="FLOW">BREAK</field>
@@ -198,7 +197,5 @@ const toolbox = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="d
       </value>
     </block>
   </category>
-</xml>`
-
-
-export default toolbox;
+  <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
+</xml>

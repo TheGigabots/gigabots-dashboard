@@ -4,12 +4,8 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import Blockly from 'node-blockly/browser';
-import GigabotsToolbox from './../blocks/GigabotsToolbox';
 import {reactLocalStorage} from 'reactjs-localstorage';
-
-const editorStyle = {
-    height: '99vh'
-}
+import toolboxXML from './../blocks/toolbox.xml';
 
 export default class Designer extends React.Component {
     constructor() {
@@ -29,41 +25,48 @@ export default class Designer extends React.Component {
     }
 
     componentDidMount() {
-        this.blocklyEditor = Blockly.inject(this.blocklyDiv,
-            {
-                toolbox: GigabotsToolbox,
-                maxBlocks: Infinity,
-                trashcan: true,
-                grid: {
-                    spacing: 20,
-                    length: 1,
-                    colour: '#888',
-                    snap: true
-                },
-                zoom: {
-                    controls: true,
-                    wheel: false,
-                    startScale: 1.1,
-                    maxScale: 3,
-                    minScale: 0.3,
-                    scaleSpeed: 1.2
-                }
-            }
-        );
 
-        this.loadXMLFromLocalStorage(false);
+        fetch(toolboxXML)
+            .then(response => response.text())
+            .then(toolboxText => {
 
 
-        this.blocklyEditor.addChangeListener(() => {
+                this.blocklyEditor = Blockly.inject(this.blocklyDiv,
+                    {
+                        toolbox: toolboxText,
+                        maxBlocks: Infinity,
+                        trashcan: true,
+                        grid: {
+                            spacing: 20,
+                            length: 1,
+                            colour: '#888',
+                            snap: true
+                        },
+                        zoom: {
+                            controls: true,
+                            wheel: false,
+                            startScale: 1.1,
+                            maxScale: 3,
+                            minScale: 0.3,
+                            scaleSpeed: 1.2
+                        }
+                    }
+                );
 
-            let xml = Blockly.Xml.workspaceToDom(this.blocklyEditor);
-            let xml_text = Blockly.Xml.domToText(xml);
-            let js = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
-            reactLocalStorage.set("editorXML", xml_text);
-            this.props.codeChangeListener(js, xml_text);
-        })
+                this.loadXMLFromLocalStorage(false);
 
-        window.addEventListener('resize', () => this.resize(), false)
+                this.blocklyEditor.addChangeListener(() => {
+
+                    let xml = Blockly.Xml.workspaceToDom(this.blocklyEditor);
+                    let xml_text = Blockly.Xml.domToText(xml);
+                    let js = Blockly.JavaScript.workspaceToCode(this.blocklyEditor);
+                    reactLocalStorage.set("editorXML", xml_text);
+                    this.props.codeChangeListener(js, xml_text);
+                })
+
+                window.addEventListener('resize', () => this.resize(), false)
+
+            });
     }
 
 
@@ -147,7 +150,6 @@ export default class Designer extends React.Component {
         require('./../blocks/DriveControlBlock');
         require('./../blocks/StopMotorBlock');
         require('./../blocks/StopAllMotorBlock');
-
     }
 
     resize() {

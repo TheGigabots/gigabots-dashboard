@@ -219,8 +219,10 @@
             <field name="TEXT">Friend Block STUB</field>
             <next>
               <block type="field_dropdown" id="^Srf}vXP})E9|sI2,:Si">
-                <mutation options="[]"></mutation>
+                <mutation options="[&quot;text&quot;]"></mutation>
                 <field name="FIELDNAME">NAME</field>
+                <field name="USER0">bot</field>
+                <field name="CPU0">bot</field>
               </block>
             </next>
           </block>
@@ -587,7 +589,7 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="4@^pnA=Bf=qe_o8UTj-a" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Set color of LED on the EV3 brick</field>
       </block>
     </value>
     <value name="HELPURL">
