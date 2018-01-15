@@ -100,9 +100,11 @@ Blockly.Blocks['drive_setup'] = {
     this.appendDummyInput()
         .appendField("Drive Setup");
     this.appendValueInput("LEFT")
-        .setCheck("motor_output");
+        .setCheck("motor_output")
+        .appendField("Left");
     this.appendValueInput("RIGHT")
-        .setCheck("motor_output");
+        .setCheck("motor_output")
+        .appendField("Right");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

@@ -386,6 +386,11 @@
           <block type="input_value" id="F2jln0q@5/kpofLx;*Yi">
             <field name="INPUTNAME">LEFT</field>
             <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="Ss.ZyLX-DZKabFC$uCYg">
+                <field name="TEXT">Left</field>
+              </block>
+            </statement>
             <value name="TYPE">
               <shadow type="type_null" id="5o`}WIAx?t/c`{xdEHF;"></shadow>
               <block type="type_other" id=";]]`C,%_AZ_v}eo,;+g6">
@@ -396,6 +401,11 @@
               <block type="input_value" id="%@83ADJ`cw,n)OOmXe1J">
                 <field name="INPUTNAME">RIGHT</field>
                 <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="@T;b}ra#XEmvq~6JnJ)g">
+                    <field name="TEXT">Right</field>
+                  </block>
+                </statement>
                 <value name="TYPE">
                   <shadow type="type_null" id="f_Dwz=2%3RGPev7/dmqf"></shadow>
                   <block type="type_other" id="4~@W~(9|Mi=9oiv%|IV7">
