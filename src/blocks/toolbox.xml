@@ -97,6 +97,16 @@
       <field name="NAME">forward</field>
       <field name="SPEED">0</field>
     </block>
+    <block type="drive_control_time">
+      <field name="NAME">forward</field>
+      <field name="SPEED">50</field>
+      <value name="TIME">
+        <block type="time_in_millis">
+          <field name="TIME">1</field>
+          <field name="TIMESCALE">seconds</field>
+        </block>
+      </value>
+    </block>
     <block type="run_motor_speed">
       <field name="SPEED">0</field>
       <value name="MOTOR">

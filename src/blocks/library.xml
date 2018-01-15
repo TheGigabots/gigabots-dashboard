@@ -1275,4 +1275,86 @@
         <field name="HUE">120</field>
       </block>
     </value>
+  </block><block type="factory_base" id="9h9VShbKT=RzU4N?N_l," deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">drive_control_time</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="l76Sp:yooc@7DQOS+W(E">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="MhFpiH#8(REMuAC4MHR3">
+            <field name="TEXT">Drive Control</field>
+            <next>
+              <block type="field_dropdown" id="n^)*rR`H_C7c*@Hs@$ye">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">NAME</field>
+                <field name="USER0">forward</field>
+                <field name="CPU0">forward</field>
+                <field name="USER1">backward</field>
+                <field name="CPU1">backward</field>
+                <field name="USER2">left</field>
+                <field name="CPU2">left</field>
+                <field name="USER3">right</field>
+                <field name="CPU3">right</field>
+                <next>
+                  <block type="field_static" id="b]Y[NEo_tyW7Z79;l-ln">
+                    <field name="TEXT">Speed</field>
+                    <next>
+                      <block type="field_number" id=";P4*`1/LTxo!L6lmveD,">
+                        <field name="VALUE">50</field>
+                        <field name="FIELDNAME">SPEED</field>
+                        <field name="MIN">0</field>
+                        <field name="MAX">100</field>
+                        <field name="PRECISION">1</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="?^ltx:SU.yz}L)~P/k9b">
+            <field name="INPUTNAME">TIME</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="o/nr-J.HI^7%+1_$P8c*">
+                <field name="TEXT">Time</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="o8?,[eZv82QJgF)g[:AA"></shadow>
+              <block type="type_other" id="D#Tl@G=z]v`)BiAX5:I4">
+                <field name="TYPE">time_in_millis</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="x7R1w^VL)v9k]G8uU*$a" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="==/@hA-i!]8UtB(B=rMk" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="}*idI07_]+[EO4WX^(Mt"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="}_P%uFijTKX,25p(;0da"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="v%%ef,e5H^fA{!E%y)~z">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
   </block></xml>

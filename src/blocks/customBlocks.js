@@ -345,3 +345,22 @@ Blockly.Blocks['wait'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['drive_control_time'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Drive Control")
+        .appendField(new Blockly.FieldDropdown([["forward","forward"], ["backward","backward"], ["left","left"], ["right","right"]]), "NAME")
+        .appendField("Speed")
+        .appendField(new Blockly.FieldNumber(50, 0, 100, 1), "SPEED");
+    this.appendValueInput("TIME")
+        .setCheck("time_in_millis")
+        .appendField("Time");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
