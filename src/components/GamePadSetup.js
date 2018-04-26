@@ -1,16 +1,42 @@
-const React = require('react');
-const GamepadTest = require('./GamepadTest');
+import React from 'react';
+import PropTypes from 'prop-types'
+import {createJoyMap, createQueryModule} from 'joymap';
+import GamePad from './GamePad'
 
-class GamePadSetup extends React.Component {
 
+export default class GamePadSetup extends React.Component {
     constructor() {
         super();
+        this.joyMap = createJoyMap();
+        this.queryModule = createQueryModule();
+        this.joyMap.addModule(this.queryModule);
     }
+
+    componentWillMount() {
+        this.joyMap.setOnPoll(() => this.forceUpdate());
+    }
+
+    componentDidMount = () => this.joyMap.start();
+    componentWillUnmount = () => this.joyMap.stop();
 
     render() {
 
-        return ( <GamepadTest durationMs={5000}/> );
+        return (
+            <article>
+                <section>
+                    <GamePad
+                        gigabot={this.props.gigabot}
+                        module={this.queryModule}
+                    >
+                    </GamePad>
+                </section>
+            </article>
+        )
     }
 }
 
-module.exports = GamePadSetup;
+GamePadSetup.propTypes = {
+    gigabot: PropTypes.object
+}
+
+

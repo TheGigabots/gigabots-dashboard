@@ -5,6 +5,7 @@ import {reactLocalStorage} from 'reactjs-localstorage';
 import SensorCard from './sensors/SensorCard'
 import MotorCard from './sensors/MotorCard'
 import Grid from 'material-ui/Grid';
+import GamePadSetup from './GamePadSetup'
 
 import Dialog, {DialogActions, DialogContent, DialogTitle,} from 'material-ui/Dialog';
 
@@ -34,6 +35,15 @@ export default class ConfigurationDialog extends React.Component {
                 <DialogContent>
                     <Grid container spacing={8}>
                         <Grid item xs={3}>
+                        </Grid>
+                        <Grid item>
+                            <GamePadSetup gigabot={bot}/>
+                        </Grid>
+                        <Grid item xs={3}>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={8}>
+                        <Grid item xs={3}>
                             <MotorCard gigabot={bot} motor={"A"}/>
                         </Grid>
                         <Grid item xs={3}>
@@ -60,6 +70,7 @@ export default class ConfigurationDialog extends React.Component {
                             <SensorCard gigabot={bot} sensor="IN4"/>
                         </Grid>
                     </Grid>
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => this.props.cancelFunc(false)} color="primary">

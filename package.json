@@ -12,6 +12,7 @@
     "d3-state-visualizer": "^1.1.0",
     "diff-steer": "0.0.2",
     "immutable": "^3.8.1",
+    "joymap": "^1.0.1",
     "jss": "^8.1.0",
     "jss-preset-default": "^3.0.0",
     "lodash": "^4.13.1",
