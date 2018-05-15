@@ -35,11 +35,6 @@ const styles = theme => ({
         alignItems: 'center',
         paddingLeft: theme.spacing.unit,
         paddingBottom: theme.spacing.unit,
-    },
-    nipple: {
-        position: 'relative',
-        height: 100,
-        width: 100
     }
 });
 
@@ -47,39 +42,12 @@ class MotorCard extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.nippleManager = null;
         this.state = {
             speed: 50
         }
     }
 
-
-    componentDidMount() {
-
-        /*
-        const joystickParams = {
-            zone: this.nippleJsDiv,
-            mode: 'static',
-            color: 'blue',
-            position: {top: '50%', left: '50%'}
-        };
-
-        this.nippleManager = nipplejs.create(joystickParams);
-        this.nippleManager.on('start end move', (evt, data) => {
-
-            if (evt.type === 'move') {
-                let percent = Math.ceil(data.distance * 2, 100);
-                let rotationSpeed = Math.round((percent * 1024) / 100);
-                AppStore.startMotor(this.props.gigabot.id, this.props.motor, 'forward', rotationSpeed);
-            }
-
-            if (evt.type === 'end') {
-                AppStore.stopMotor(this.props.gigabot.id, this.props.motor);
-            }
-        })
-        */
-    }
-
+    
     render() {
         const {classes, theme} = this.props;
         const motor = this.props.motor;
@@ -130,8 +98,6 @@ class MotorCard extends React.Component {
 
                                 </Grid>
                             </Grid>
-
-
                         </CardContent>
 
                     </div>
@@ -140,17 +106,6 @@ class MotorCard extends React.Component {
         );
     }
 
-
-    /*
-                            <div className={classes.controls}>
-                            <div className={classes.nipple} ref={(div) => this.nippleJsDiv = div}>
-                                <div className="front"></div>
-                                <div className="back"></div>
-                            </div>
-                        </div>
-     */
-
-
     handleSpeedChange(e) {
         this.setState({
             speed: e.target.value
@@ -158,14 +113,10 @@ class MotorCard extends React.Component {
     }
 
     onButtonDown(dir) {
-        this.interval = setInterval(() => {
-            AppStore.startMotor(this.props.gigabot.id, this.props.motor, dir, Motors.toRotationSpeed(this.state.speed, false));
-        }, 1000);
-
+        AppStore.startMotor(this.props.gigabot.id, this.props.motor, dir, Motors.toRotationSpeed(this.state.speed, false));
     }
 
     onButtonUp() {
-        clearInterval(this.interval);
         AppStore.stopMotor(this.props.gigabot.id, this.props.motor);
     }
 }
