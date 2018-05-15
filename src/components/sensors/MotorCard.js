@@ -47,7 +47,6 @@ class MotorCard extends React.Component {
         }
     }
 
-    
     render() {
         const {classes, theme} = this.props;
         const motor = this.props.motor;
@@ -64,17 +63,19 @@ class MotorCard extends React.Component {
                                 <Grid item>
                                     <Button
                                         color={"primary"}
+                                        size={"small"}
                                         onMouseDown={() => this.onButtonDown('f')}
                                         onMouseUp={() => this.onButtonUp()}
-                                        raised><ArrowUp/></Button>
+                                         variant={"raised"}><ArrowUp/></Button>
                                 </Grid>
 
                                 <Grid item>
                                     <Button
                                         color={"primary"}
+                                        size={"small"}
                                         onMouseDown={() => this.onButtonDown('r')}
                                         onMouseUp={() => this.onButtonUp()}
-                                        raised><ArrowDown/></Button>
+                                        variant={"raised"}><ArrowDown/></Button>
 
                                 </Grid>
 

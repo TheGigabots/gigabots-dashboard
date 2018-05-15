@@ -21,7 +21,6 @@ export default class GamePad extends React.Component {
         if (b.justChanged) {
             this.onButton(name, b.pressed);
         }
-
     }
 
     onButton(name, pressed) {
@@ -70,6 +69,7 @@ export default class GamePad extends React.Component {
 
 
     render() {
+
         const [x, y] = this.props.module.getSticks(analogInputs[0]).value;
 
         this.generateEventsForButton("A");

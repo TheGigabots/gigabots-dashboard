@@ -33,15 +33,7 @@ export default class ConfigurationDialog extends React.Component {
             <Dialog open={this.props.open} fullScreen={true}>
                 <DialogTitle>Gigabot Configuration</DialogTitle>
                 <DialogContent>
-                    <Grid container spacing={8}>
-                        <Grid item xs={3}>
-                        </Grid>
-                        <Grid item>
-                            <GamePadSetup gigabot={bot}/>
-                        </Grid>
-                        <Grid item xs={3}>
-                        </Grid>
-                    </Grid>
+
                     <Grid container spacing={8}>
                         <Grid item xs={3}>
                             <MotorCard gigabot={bot} motor={"A"}/>
@@ -70,7 +62,15 @@ export default class ConfigurationDialog extends React.Component {
                             <SensorCard gigabot={bot} sensor="IN4"/>
                         </Grid>
                     </Grid>
-
+                    <Grid container spacing={8}>
+                        <Grid item xs={3}>
+                        </Grid>
+                        <Grid item>
+                            <GamePadSetup gigabot={bot}/>
+                        </Grid>
+                        <Grid item xs={3}>
+                        </Grid>
+                    </Grid>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => this.props.cancelFunc(false)} color="primary">
