@@ -74,10 +74,12 @@ class SensorCard extends React.Component {
         else if (driver === 'lego-ev3-ir') {
             return this.renderIRSensor();
         }
+        else if (driver === 'lego-ev3-us') {
+            return this.renderUltrasonicSensor();
+        }
         else {
             return (<div><Typography>unknown</Typography></div>);
         }
-
     }
 
     renderTouchSensor() {
@@ -102,6 +104,17 @@ class SensorCard extends React.Component {
             <Typography>{sensorVal}</Typography>
         )
     }
+
+
+    renderUltrasonicSensor() {
+        const bot = this.props.gigabot;
+        const sensorVal = bot.sensorValue(this.props.sensor)
+
+        return (
+            <Typography>{sensorVal}</Typography>
+        )
+    }
+
 
 
     renderColorSensor() {
@@ -180,6 +193,14 @@ class SensorCard extends React.Component {
         else if (driver === 'lego-ev3-ir') {
             meta.image = 'infrared-sensor-square.jpg';
             meta.friendlyName = "IR Sensor";
+        }
+        else if( driver === 'lego-ev3-us') {
+            meta.image = 'ultrasonic-sensor-square.jpg';
+            meta.friendlyName='Ultrasonic Sensor';
+        }
+        else {
+            meta.image = 'question-square.jpg';
+            meta.friendlyName='No sensor';
         }
 
         return meta;
