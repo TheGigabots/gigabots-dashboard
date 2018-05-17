@@ -3,17 +3,11 @@ import PropTypes from 'prop-types'
 import AppStore from './../store/AppStore';
 import Motors from "../blocks/Motors";
 
-
-const analogInputs = ['L', 'R'];
-const shoulderInputs = ['L2', 'L1', 'R2', 'R1'];
-const digitalInputs = [
-    'dpadUp', 'dpadDown', 'dpadLeft', 'dpadRight',
-    'A', 'B', 'X', 'Y',
-    'start', 'select', 'home'
-];
-
-
 export default class GamePad extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.button = null;
+    }
 
     generateEventsForButton(name) {
         const b = this.props.module.getButtons(name);
@@ -24,53 +18,43 @@ export default class GamePad extends React.Component {
     }
 
     onButton(name, pressed) {
-        console.log(name + "->" + pressed)
 
+        const {config, onButtonDown, onButtonUp} = this.props;
+        const buttonConfig = config.buttons[name];
 
-        if (name === 'dpadUp') {
-            if (pressed) {
-                this.onButtonDown("A", "f");
+        if (buttonConfig) {
+            if (buttonConfig.motor === "S") {
+                if (pressed) {
+                    AppStore.allStop(this.props.gigabot.id)
+                }
             }
             else {
-                this.onButtonUp("A");
+                if (pressed) {
+                    this.onButtonDown(buttonConfig.motor, buttonConfig.direction, buttonConfig.speed);
+                }
+                else {
+                    this.onButtonUp(buttonConfig.motor)
+                }
             }
         }
 
-        if (name === 'dpadDown') {
-            if (pressed) {
-                this.onButtonDown("A", "r");
-            }
-            else {
-                this.onButtonUp("A");
+        if (pressed) {
+            this.button = name;
+
+            if (onButtonDown) {
+                onButtonDown(name);
             }
         }
-
-
-        if (name === 'R1') {
-            if (pressed) {
-                this.onButtonDown("B", "f");
-            }
-            else {
-                this.onButtonUp("B");
+        else {
+            this.button = null;
+            if (onButtonUp) {
+                onButtonUp(name)
             }
         }
-
-        if (name === 'R2') {
-            if (pressed) {
-                this.onButtonDown("B", "r");
-            }
-            else {
-                this.onButtonUp("B");
-            }
-        }
-
-
     }
 
 
     render() {
-
-        const [x, y] = this.props.module.getSticks(analogInputs[0]).value;
 
         this.generateEventsForButton("A");
         this.generateEventsForButton("B");
@@ -88,7 +72,7 @@ export default class GamePad extends React.Component {
 
         return (
             <svg width={200} height={200} viewBox={"0 0 200 200"}>
-
+                <text x="90" y="50" style={{font: "bold 60px"}}>{this.button}</text>
                 <rect x={0} y={0} width="200" height="200" fill={"transparent"} stroke={"#000000"} rx="10" ry="10"/>
 
                 <g id="leftShoulder" transform={"translate(25,50)"}>
@@ -130,7 +114,6 @@ export default class GamePad extends React.Component {
         if (pressed) {
             fill = "#000000"
         }
-
         return (
             <circle cx={x} cy={y} r={10} fill={fill} stroke={"#000000"}></circle>
         );
@@ -149,9 +132,8 @@ export default class GamePad extends React.Component {
         );
     }
 
-    onButtonDown(motor, dir) {
-        console.log(motor + " " + dir);
-        AppStore.startMotor(this.props.gigabot.id, motor, dir, Motors.toRotationSpeed(50, false));
+    onButtonDown(motor, dir, speed) {
+        AppStore.startMotor(this.props.gigabot.id, motor, dir, Motors.toRotationSpeed(speed, false));
 
     }
 
@@ -164,7 +146,10 @@ export default class GamePad extends React.Component {
 GamePad.propTypes = {
     name: PropTypes.string,
     module: PropTypes.object,
-    gigabot: PropTypes.object
+    gigabot: PropTypes.object,
+    config: PropTypes.object,
+    onButtonDown: PropTypes.func,
+    onButtonUp: PropTypes.func
 }
 
 

@@ -191,7 +191,20 @@ class AppStoreClz {
         if (channel) {
             channel.publish(msg);
         }
+    }
 
+
+
+    allStop(botId) {
+        //TODO could use a real all stop command
+        const channel = this.client.getChannel(botId);
+
+        if (channel) {
+            channel.publish( {botId: botId, type: 'motorStop', port: "A",});
+            channel.publish( {botId: botId, type: 'motorStop', port: "B",});
+            channel.publish( {botId: botId, type: 'motorStop', port: "C",});
+            channel.publish( {botId: botId, type: 'motorStop', port: "D",});
+        }
     }
 
     drive(botId, left, right) {

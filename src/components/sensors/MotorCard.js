@@ -10,8 +10,6 @@ import {MenuItem} from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import Motors from './../../blocks/Motors';
 import Grid from 'material-ui/Grid';
-
-
 import Typography from 'material-ui/Typography';
 
 

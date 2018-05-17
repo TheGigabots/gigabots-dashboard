@@ -7,6 +7,8 @@ import MotorCard from './sensors/MotorCard'
 import Grid from 'material-ui/Grid';
 import GamePadSetup from './GamePadSetup'
 
+
+
 import Dialog, {DialogActions, DialogContent, DialogTitle,} from 'material-ui/Dialog';
 
 
@@ -63,13 +65,10 @@ export default class ConfigurationDialog extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid container spacing={8}>
-                        <Grid item xs={3}>
-                        </Grid>
-                        <Grid item>
+                        <Grid item xs={12}>
                             <GamePadSetup gigabot={bot}/>
                         </Grid>
-                        <Grid item xs={3}>
-                        </Grid>
+
                     </Grid>
                 </DialogContent>
                 <DialogActions>
