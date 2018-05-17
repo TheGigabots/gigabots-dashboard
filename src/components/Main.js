@@ -246,7 +246,6 @@ class Main extends React.Component {
             >
                 <MenuItem onClick={() => this.handleFriends()}>Friends</MenuItem>
                 <Divider/>
-                <Divider/>
                 <MenuItem onClick={() => this.handleDisconnect()}>Disconnect</MenuItem>
             </Menu>
         )

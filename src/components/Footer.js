@@ -59,7 +59,7 @@ class Footer extends React.Component {
         return (
             <div className={this.props.classes.root}>
             <Drawer
-                type="permanent"
+                variant="permanent"
                 anchor="bottom"
             >
                 <Grid container >
